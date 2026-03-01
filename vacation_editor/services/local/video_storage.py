@@ -66,14 +66,34 @@ class LocalVideoStorage:
     def list_clips(self) -> list[str]:
         if not self._clips_dir.exists():
             return []
-        return [
-            p.stem
-            for p in self._clips_dir.iterdir()
-            if p.suffix.lower() in _VIDEO_EXTENSIONS
-        ]
+        return [p.stem for p in self._clips_dir.iterdir() if p.suffix.lower() in _VIDEO_EXTENSIONS]
 
     def get_metadata(self, clip_id: str) -> ClipMetadata:
         meta_path = self._meta_path(clip_id)
         if not meta_path.exists():
             raise KeyError(f"No metadata found for clip_id: {clip_id!r}")
         return ClipMetadata.model_validate_json(meta_path.read_text(encoding="utf-8"))
+
+    def delete(self, clip_id: str) -> None:
+        """Remove the video file and .meta.json for clip_id from the clips directory."""
+        try:
+            video_path = self._video_path(clip_id)
+            video_path.unlink()
+        except KeyError:
+            pass
+        meta = self._meta_path(clip_id)
+        if meta.exists():
+            meta.unlink()
+
+    def heal(self, clip_id: str) -> None:
+        """Re-probe the video file and regenerate the missing .meta.json."""
+        video_path = self._video_path(clip_id)  # raises KeyError if no video file
+        ffprobe_path = ffprobe_service.detect_ffprobe(self._config)
+        try:
+            metadata = ffprobe_service.probe_clip(ffprobe_path, video_path)
+        except Exception as exc:
+            raise RuntimeError(f"ffprobe failed for clip_id {clip_id!r}: {exc}") from exc
+        metadata_with_id = metadata.model_copy(update={"clip_id": clip_id})
+        self._meta_path(clip_id).write_text(
+            metadata_with_id.model_dump_json(indent=2), encoding="utf-8"
+        )

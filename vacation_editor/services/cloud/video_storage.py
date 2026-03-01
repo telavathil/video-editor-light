@@ -38,3 +38,13 @@ class S3VideoStorage:
         raise NotImplementedError(
             "S3VideoStorage not yet implemented. Set cloud_mode=False to use local storage."
         )
+
+    def heal(self, clip_id: str) -> None:
+        raise NotImplementedError(
+            "S3VideoStorage not yet implemented. Set cloud_mode=False to use local storage."
+        )
+
+    def delete(self, clip_id: str) -> None:
+        raise NotImplementedError(
+            "S3VideoStorage not yet implemented. Set cloud_mode=False to use local storage."
+        )

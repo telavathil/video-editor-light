@@ -803,17 +803,17 @@ Use this section to track progress across implementation sessions. Check off ste
 - [x] 0.11 Tests
 
 ### Phase 1 — Annotation Tool
-- [ ] 1.1 Video player widget
-- [ ] 1.2 Frame-accurate seeking
-- [ ] 1.3 Mark In / Mark Out controls
-- [ ] 1.4 Timeline widget
-- [ ] 1.5 Draggable section handles
-- [ ] 1.6 Section list panel
-- [ ] 1.7 Annotation controller
-- [ ] 1.8 File browser
-- [ ] 1.9 Tab assembly
-- [ ] 1.10 Keyboard shortcuts
-- [ ] 1.11 Tests
+- [x] 1.1 Video player widget  (gui/annotation/video_player.py)
+- [x] 1.2 Frame-accurate seeking  (transport_bar.py + keyboard shortcuts)
+- [x] 1.3 Mark In / Mark Out controls  (mark_bar.py)
+- [x] 1.4 Timeline widget  (timeline_widget.py — painted ticks/track/playhead)
+- [x] 1.5 Draggable section handles  (timeline_widget.py — mouse drag on handles)
+- [x] 1.6 Section list panel  (section_list.py)
+- [x] 1.7 Annotation controller  (controller.py — auto-save, undo/redo)
+- [x] 1.8 File browser  (file_browser.py)
+- [x] 1.9 Tab assembly  (tab.py)
+- [x] 1.10 Keyboard shortcuts  (tab.py _setup_shortcuts)
+- [x] 1.11 Tests  (114 tests passing — controller, widgets, models, services)
 
 ### Phase 2 — Composition Engine (Short Clip)
 - [ ] 2.1 Section extraction pipeline

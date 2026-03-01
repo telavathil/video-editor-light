@@ -8,7 +8,7 @@ A macOS desktop app for creating polished vacation videos from DJI drone clips. 
 
 **Composition Engine** — Order your marked sections across clips, choose transitions (cuts, crossfades, dissolves), and export a stitched 4K MP4 with hardware-accelerated encoding. In long-form mode, the engine analyses a music track with librosa, aligns transitions to beats, and mixes the audio into the final export.
 
-**Music Search** *(optional)* — Search free music libraries by mood and duration, preview tracks, and download directly into the composition workflow.
+**Music Search** _(optional)_ — Search free music libraries by mood and duration, preview tracks, and download directly into the composition workflow.
 
 ## Requirements
 
@@ -23,18 +23,25 @@ A macOS desktop app for creating polished vacation videos from DJI drone clips. 
 # Install uv (if not already installed)
 brew install uv
 
-# Install dependencies and create virtualenv
+# Install dependencies (creates .venv automatically)
 uv sync
 
-# Install with optional music sync support (librosa)
+# Include optional music sync support (librosa)
 uv sync --extra music
+
+# Include dev tools (pytest, ruff, mypy)
+uv sync --extra dev
 ```
 
 ## Usage
 
 ```bash
 uv run python -m vacation_editor
+# or via the installed script entry point
+uv run vacation-editor
 ```
+
+> **Note:** `uv run` automatically uses the project's `.venv` — no need to activate it manually.
 
 ## Development
 

@@ -39,3 +39,24 @@ class VideoStorage(Protocol):
         Raises KeyError if clip_id is not found.
         """
         ...
+
+    def heal(self, clip_id: str) -> None:
+        """Re-probe a clip's video file and regenerate its missing metadata file.
+
+        In local mode: runs ffprobe on the existing video file and writes the .meta.json.
+        In cloud mode (future): fetches stream info from the media service.
+
+        Raises KeyError if no video file exists for clip_id.
+        Raises RuntimeError if probing fails.
+        """
+        ...
+
+    def delete(self, clip_id: str) -> None:
+        """Permanently delete a clip and its metadata from storage.
+
+        In local mode: removes the video file and .meta.json from the clips directory.
+        In cloud mode (future): deletes from S3/R2 and removes the database record.
+
+        Silent no-op if the clip does not exist.
+        """
+        ...
