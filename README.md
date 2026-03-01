@@ -14,18 +14,42 @@ A macOS desktop app for creating polished vacation videos from DJI drone clips. 
 
 - macOS (uses AVFoundation for video playback and `h264_videotoolbox` / `hevc_videotoolbox` for encoding)
 - Python 3.12+
-- FFmpeg — install via Homebrew: `brew install ffmpeg`
+- [uv](https://docs.astral.sh/uv/) — fast Python package manager
+- FFmpeg — `brew install ffmpeg`
 
-## Installation
+## Setup
 
 ```bash
-pip install -e .
+# Install uv (if not already installed)
+brew install uv
+
+# Install dependencies and create virtualenv
+uv sync
+
+# Install with optional music sync support (librosa)
+uv sync --extra music
 ```
 
 ## Usage
 
 ```bash
-python -m vacation_editor
+uv run python -m vacation_editor
+```
+
+## Development
+
+```bash
+# Install dev dependencies
+uv sync --extra dev
+
+# Run tests
+uv run pytest
+
+# Lint
+uv run ruff check .
+
+# Type check
+uv run mypy vacation_editor
 ```
 
 ## Architecture

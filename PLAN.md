@@ -790,17 +790,17 @@ The Protocol interfaces and provider factory are the only preparation needed. Wh
 Use this section to track progress across implementation sessions. Check off steps as they are completed.
 
 ### Phase 0 — Foundation
-- [ ] 0.1 Scaffolding + pyproject.toml
-- [ ] 0.2 AppConfig
-- [ ] 0.3 Pydantic models
-- [ ] 0.4 Protocol definitions
-- [ ] 0.5 Local implementations
-- [ ] 0.6 FFprobe service
-- [ ] 0.7 FFmpeg service
-- [ ] 0.8 Provider factory
-- [ ] 0.9 Cloud stub files
-- [ ] 0.10 Path utilities
-- [ ] 0.11 Tests
+- [x] 0.1 Scaffolding + pyproject.toml
+- [x] 0.2 AppConfig
+- [x] 0.3 Pydantic models
+- [x] 0.4 Protocol definitions
+- [x] 0.5 Local implementations
+- [x] 0.6 FFprobe service
+- [x] 0.7 FFmpeg service
+- [x] 0.8 Provider factory
+- [x] 0.9 Cloud stub files
+- [x] 0.10 Path utilities
+- [x] 0.11 Tests
 
 ### Phase 1 — Annotation Tool
 - [ ] 1.1 Video player widget
