@@ -1,5 +1,5 @@
 {
-  "version": "2.8",
+  "version": "2.9",
   "children": [
     {
       "type": "frame",
@@ -130,7 +130,7 @@
                       "type": "frame",
                       "id": "I40Pj",
                       "name": "tabComposition",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "gap": 6,
                       "padding": [
                         0,
@@ -155,7 +155,8 @@
                           "fill": "$text-secondary",
                           "content": "Composition",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -163,7 +164,7 @@
                       "type": "frame",
                       "id": "TALdc",
                       "name": "tabMusic",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "gap": 6,
                       "padding": [
                         0,
@@ -188,7 +189,8 @@
                           "fill": "$text-secondary",
                           "content": "Music",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -482,7 +484,7 @@
                       "name": "Clip 2",
                       "width": "fill_container",
                       "height": 60,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -608,7 +610,7 @@
                       "name": "Clip 3",
                       "width": "fill_container",
                       "height": 60,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -747,7 +749,7 @@
                   "name": "Video Area",
                   "width": "fill_container",
                   "height": 476,
-                  "fill": "#000000",
+                  "fill": "#0E0E0E",
                   "layout": "none",
                   "children": [
                     {
@@ -804,10 +806,9 @@
                           "name": "timecodeText",
                           "fill": "#F2F2F7",
                           "content": "00:01:24:12",
-                          "fontFamily": "Inter",
+                          "fontFamily": "Roboto Mono",
                           "fontSize": 12,
-                          "fontWeight": "600",
-                          "letterSpacing": 1
+                          "fontWeight": "600"
                         }
                       ]
                     },
@@ -1271,7 +1272,8 @@
                           "fill": "$text-muted",
                           "content": "01:24 →  pending mark out...",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1441,7 +1443,7 @@
                           "name": "ticksRow",
                           "width": 860,
                           "height": 20,
-                          "fill": "transparent",
+                          "fill": "#00000000",
                           "layout": "none",
                           "children": [
                             {
@@ -1994,7 +1996,7 @@
                       "id": "Ve5jz",
                       "name": "Section Row 2",
                       "width": "fill_container",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -2118,7 +2120,7 @@
                       "id": "ouVrZ",
                       "name": "Section Row 3",
                       "width": "fill_container",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -2374,7 +2376,7 @@
                       "type": "frame",
                       "id": "50JC4",
                       "name": "compTab1",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "gap": 6,
                       "padding": [
                         0,
@@ -2449,7 +2451,7 @@
                       "type": "frame",
                       "id": "1KcaL",
                       "name": "compTab3",
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "gap": 6,
                       "padding": [
                         0,
@@ -2672,7 +2674,7 @@
                       "name": "libSec1",
                       "width": "fill_container",
                       "height": 52,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -2757,7 +2759,7 @@
                       "name": "libSec2",
                       "width": "fill_container",
                       "height": 52,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -2894,7 +2896,7 @@
                       "name": "libSec3",
                       "width": "fill_container",
                       "height": 52,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -2979,7 +2981,7 @@
                       "name": "libSec4",
                       "width": "fill_container",
                       "height": 52,
-                      "fill": "transparent",
+                      "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
@@ -3157,7 +3159,7 @@
                           "type": "frame",
                           "id": "ZksfW",
                           "name": "seqClearBtn",
-                          "fill": "transparent",
+                          "fill": "#00000000",
                           "cornerRadius": 4,
                           "stroke": {
                             "align": "inside",
@@ -3272,16 +3274,49 @@
                                 0,
                                 0
                               ],
+                              "layout": "none",
                               "children": [
                                 {
                                   "type": "icon_font",
                                   "id": "6EThB",
+                                  "x": 59,
+                                  "y": 25,
                                   "name": "card1ThumbIcon",
                                   "width": 22,
                                   "height": 22,
                                   "iconFontName": "mountain-snow",
                                   "iconFontFamily": "lucide",
                                   "fill": "#1A3A5C"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "IU65V",
+                                  "x": 114,
+                                  "y": 4,
+                                  "name": "card1RemoveBtn",
+                                  "width": 22,
+                                  "height": 22,
+                                  "fill": "$bg-input",
+                                  "cornerRadius": 11,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "$border"
+                                  },
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "1bt4R",
+                                      "name": "xIco1",
+                                      "width": 10,
+                                      "height": 10,
+                                      "iconFontName": "x",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$text-secondary"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -3427,16 +3462,49 @@
                                 0,
                                 0
                               ],
+                              "layout": "none",
                               "children": [
                                 {
                                   "type": "icon_font",
                                   "id": "so5ys",
+                                  "x": 59,
+                                  "y": 25,
                                   "name": "card2ThumbIcon",
                                   "width": 22,
                                   "height": 22,
                                   "iconFontName": "sunset",
                                   "iconFontFamily": "lucide",
                                   "fill": "#3A1A40"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "udsY4",
+                                  "x": 114,
+                                  "y": 4,
+                                  "name": "card2RemoveBtn",
+                                  "width": 22,
+                                  "height": 22,
+                                  "fill": "$bg-input",
+                                  "cornerRadius": 11,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "$border"
+                                  },
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "jQJgS",
+                                      "name": "xIco2",
+                                      "width": 10,
+                                      "height": 10,
+                                      "iconFontName": "x",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$text-secondary"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -3554,16 +3622,49 @@
                                 0,
                                 0
                               ],
+                              "layout": "none",
                               "children": [
                                 {
                                   "type": "icon_font",
                                   "id": "SrmVP",
+                                  "x": 59,
+                                  "y": 25,
                                   "name": "card3ThumbIcon",
                                   "width": 22,
                                   "height": 22,
                                   "iconFontName": "trees",
                                   "iconFontFamily": "lucide",
                                   "fill": "#1A3A20"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "zGXAl",
+                                  "x": 114,
+                                  "y": 4,
+                                  "name": "card3RemoveBtn",
+                                  "width": 22,
+                                  "height": 22,
+                                  "fill": "$bg-input",
+                                  "cornerRadius": 11,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "$border"
+                                  },
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "VxDk5",
+                                      "name": "xIco3",
+                                      "width": 10,
+                                      "height": 10,
+                                      "iconFontName": "x",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$text-secondary"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -3609,7 +3710,7 @@
                           "name": "Add Card",
                           "width": 80,
                           "height": 120,
-                          "fill": "transparent",
+                          "fill": "#00000000",
                           "cornerRadius": 6,
                           "stroke": {
                             "align": "inside",
@@ -4298,7 +4399,25 @@
                   "name": "exportBtn",
                   "width": "fill_container",
                   "height": 48,
-                  "fill": "$accent-blue",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#85ADFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#B1C9FF",
+                        "position": 1
+                      }
+                    ]
+                  },
                   "gap": 8,
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -4360,11 +4479,11 @@
           "name": "Modal",
           "width": 520,
           "fill": "$bg-elevated",
-          "cornerRadius": 10,
+          "cornerRadius": 4,
           "stroke": {
             "align": "inside",
             "thickness": 1,
-            "fill": "$border"
+            "fill": "#43475126"
           },
           "layout": "vertical",
           "children": [
@@ -4405,7 +4524,7 @@
                   "width": 28,
                   "height": 28,
                   "fill": "$bg-input",
-                  "cornerRadius": 14,
+                  "cornerRadius": 4,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
@@ -4570,7 +4689,7 @@
                           "id": "eK00Z",
                           "name": "codecOpt2",
                           "width": "fill_container",
-                          "fill": "transparent",
+                          "fill": "#00000000",
                           "cornerRadius": 4,
                           "justifyContent": "center",
                           "alignItems": "center",
@@ -4656,7 +4775,7 @@
                               "id": "1FJhE",
                               "name": "fpsOpt2",
                               "width": "fill_container",
-                              "fill": "transparent",
+                              "fill": "#00000000",
                               "cornerRadius": 4,
                               "justifyContent": "center",
                               "alignItems": "center",
@@ -4886,12 +5005,12 @@
                   "type": "frame",
                   "id": "x4HoK",
                   "name": "cancelBtn",
-                  "fill": "transparent",
+                  "fill": "#00000000",
                   "cornerRadius": 5,
                   "stroke": {
                     "align": "inside",
                     "thickness": 1,
-                    "fill": "$border"
+                    "fill": "#43475126"
                   },
                   "padding": [
                     8,
@@ -4975,7 +5094,7 @@
           "name": "Modal Complete",
           "width": 480,
           "fill": "$bg-elevated",
-          "cornerRadius": 10,
+          "cornerRadius": 4,
           "stroke": {
             "align": "inside",
             "thickness": 1,
@@ -5020,7 +5139,7 @@
                   "width": 28,
                   "height": 28,
                   "fill": "$bg-input",
-                  "cornerRadius": 14,
+                  "cornerRadius": 6,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
@@ -5198,8 +5317,13 @@
                   "id": "uoTL7",
                   "name": "revealBtn",
                   "width": "fill_container",
-                  "fill": "$bg-input",
+                  "fill": "#00000000",
                   "cornerRadius": 5,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
                   "gap": 6,
                   "padding": [
                     8,
@@ -5234,8 +5358,26 @@
                   "id": "76cj8",
                   "name": "doneBtn",
                   "width": "fill_container",
-                  "fill": "$accent-blue",
-                  "cornerRadius": 5,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#85ADFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#B1C9FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 4,
                   "padding": [
                     8,
                     24
@@ -5247,7 +5389,7 @@
                       "type": "text",
                       "id": "wkNKq",
                       "name": "doneBtnLabel",
-                      "fill": "#FFFFFF",
+                      "fill": "#E5E2E1",
                       "content": "Done",
                       "fontFamily": "Inter",
                       "fontSize": 12,
@@ -5539,7 +5681,7 @@
                     "thickness": {
                       "bottom": 1
                     },
-                    "fill": "$border"
+                    "fill": "#00000000"
                   },
                   "gap": 12,
                   "padding": [
@@ -5553,7 +5695,7 @@
                       "id": "DWq5y",
                       "name": "mFileBtn",
                       "fill": "$bg-elevated",
-                      "cornerRadius": 5,
+                      "cornerRadius": 4,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
@@ -5602,12 +5744,12 @@
                       "type": "frame",
                       "id": "NsaOc",
                       "name": "mBpmBadge",
-                      "fill": "#1A1A2E",
+                      "fill": "$bg-panel",
                       "cornerRadius": 4,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "#3A3A5C"
+                        "fill": "$border"
                       },
                       "gap": 6,
                       "padding": [
@@ -5630,7 +5772,7 @@
                           "type": "text",
                           "id": "YqT1b",
                           "name": "mBpmLabel",
-                          "fill": "#A0A0EE",
+                          "fill": "#B1C9FF",
                           "content": "128 BPM",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -5673,8 +5815,26 @@
                       "type": "frame",
                       "id": "r60JO",
                       "name": "mDetectBtn",
-                      "fill": "$accent-blue",
-                      "cornerRadius": 5,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#85ADFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#B1C9FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 4,
                       "gap": 6,
                       "padding": [
                         6,
@@ -5690,13 +5850,13 @@
                           "height": 13,
                           "iconFontName": "scan-line",
                           "iconFontFamily": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#E5E2E1"
                         },
                         {
                           "type": "text",
                           "id": "eBcFQ",
                           "name": "mDetectLabel",
-                          "fill": "#FFFFFF",
+                          "fill": "#E5E2E1",
                           "content": "Detect Beats",
                           "fontFamily": "Inter",
                           "fontSize": 12,
@@ -5709,7 +5869,7 @@
                       "id": "LeDgt",
                       "name": "mStrategyBtn",
                       "fill": "$bg-elevated",
-                      "cornerRadius": 5,
+                      "cornerRadius": 4,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
@@ -5752,7 +5912,7 @@
                   "name": "Waveform Area",
                   "width": "fill_container",
                   "height": "fill_container",
-                  "fill": "#0C0C0F",
+                  "fill": "#0E0E0E",
                   "layout": "none",
                   "children": [
                     {
@@ -5860,7 +6020,7 @@
                       "name": "Waveform Track",
                       "width": 1140,
                       "height": 500,
-                      "fill": "#111114",
+                      "fill": "#0E0E0E",
                       "layout": "none",
                       "children": [
                         {
@@ -5882,7 +6042,7 @@
                               "name": "bar1",
                               "width": 3,
                               "height": 40,
-                              "fill": "#1E3A5F",
+                              "fill": "#0D2248",
                               "cornerRadius": 1
                             },
                             {
@@ -5893,7 +6053,7 @@
                               "name": "bar2",
                               "width": 3,
                               "height": 80,
-                              "fill": "#1E3A5F",
+                              "fill": "#0D2248",
                               "cornerRadius": 1
                             },
                             {
@@ -5904,7 +6064,7 @@
                               "name": "bar3",
                               "width": 3,
                               "height": 120,
-                              "fill": "#1E4A7F",
+                              "fill": "#152E5E",
                               "cornerRadius": 1
                             },
                             {
@@ -5915,7 +6075,7 @@
                               "name": "bar4",
                               "width": 3,
                               "height": 180,
-                              "fill": "#245C9A",
+                              "fill": "#1A3C75",
                               "cornerRadius": 1
                             },
                             {
@@ -5926,7 +6086,7 @@
                               "name": "bar5",
                               "width": 3,
                               "height": 220,
-                              "fill": "#2A6FB8",
+                              "fill": "#2050A8",
                               "cornerRadius": 1
                             },
                             {
@@ -5937,7 +6097,7 @@
                               "name": "bar6",
                               "width": 3,
                               "height": 200,
-                              "fill": "#2A6FB8",
+                              "fill": "#2050A8",
                               "cornerRadius": 1
                             },
                             {
@@ -5948,7 +6108,7 @@
                               "name": "bar7",
                               "width": 3,
                               "height": 150,
-                              "fill": "#245C9A",
+                              "fill": "#1A3C75",
                               "cornerRadius": 1
                             },
                             {
@@ -5959,7 +6119,7 @@
                               "name": "bar8",
                               "width": 3,
                               "height": 100,
-                              "fill": "#1E4A7F",
+                              "fill": "#152E5E",
                               "cornerRadius": 1
                             },
                             {
@@ -5970,7 +6130,7 @@
                               "name": "bar9",
                               "width": 3,
                               "height": 60,
-                              "fill": "#1E3A5F",
+                              "fill": "#0D2248",
                               "cornerRadius": 1
                             },
                             {
@@ -5981,7 +6141,7 @@
                               "name": "bar10",
                               "width": 3,
                               "height": 130,
-                              "fill": "#245C9A",
+                              "fill": "#1A3C75",
                               "cornerRadius": 1
                             },
                             {
@@ -5992,7 +6152,7 @@
                               "name": "bar11",
                               "width": 3,
                               "height": 190,
-                              "fill": "#2A6FB8",
+                              "fill": "#2050A8",
                               "cornerRadius": 1
                             },
                             {
@@ -6003,7 +6163,7 @@
                               "name": "bar12",
                               "width": 3,
                               "height": 210,
-                              "fill": "#2A6FB8",
+                              "fill": "#2050A8",
                               "cornerRadius": 1
                             },
                             {
@@ -6014,7 +6174,7 @@
                               "name": "bar13",
                               "width": 3,
                               "height": 160,
-                              "fill": "#245C9A",
+                              "fill": "#1A3C75",
                               "cornerRadius": 1
                             },
                             {
@@ -6025,7 +6185,7 @@
                               "name": "bar14",
                               "width": 3,
                               "height": 90,
-                              "fill": "#1E3A5F",
+                              "fill": "#0D2248",
                               "cornerRadius": 1
                             },
                             {
@@ -6036,7 +6196,7 @@
                               "name": "bar15",
                               "width": 3,
                               "height": 140,
-                              "fill": "#245C9A",
+                              "fill": "#1A3C75",
                               "cornerRadius": 1
                             }
                           ]
@@ -6249,7 +6409,7 @@
                           "name": "waveCenter",
                           "width": 1140,
                           "height": 1,
-                          "fill": "#2A2A3A"
+                          "fill": "#201F1F"
                         },
                         {
                           "type": "frame",
@@ -6259,7 +6419,7 @@
                           "name": "Section Strip",
                           "width": 1140,
                           "height": 48,
-                          "fill": "#1A1A1E",
+                          "fill": "#0E0E0E",
                           "stroke": {
                             "align": "inside",
                             "thickness": {
@@ -6290,7 +6450,7 @@
                               "name": "ss1",
                               "width": 112,
                               "height": 28,
-                              "fill": "#0A84FF44",
+                              "fill": "#B1C9FF44",
                               "cornerRadius": 3,
                               "stroke": {
                                 "align": "inside",
@@ -6385,7 +6545,7 @@
                           "name": "mPlayhead",
                           "width": 2,
                           "height": 340,
-                          "fill": "#FFFFFF99"
+                          "fill": "#B1C9FF66"
                         },
                         {
                           "type": "frame",
@@ -6395,7 +6555,7 @@
                           "name": "mPlayheadTop",
                           "width": 10,
                           "height": 8,
-                          "fill": "#FFFFFF",
+                          "fill": "#B1C9FF",
                           "cornerRadius": [
                             0,
                             0,
@@ -6421,7 +6581,7 @@
                 "thickness": {
                   "left": 1
                 },
-                "fill": "$border"
+                "fill": "#00000000"
               },
               "layout": "vertical",
               "children": [
@@ -6670,7 +6830,7 @@
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 3,
-                                "fill": "#FFFFFF"
+                                "fill": "#E5E2E1"
                               }
                             },
                             {
@@ -6978,8 +7138,26 @@
                       "name": "syncBtnInner",
                       "width": "fill_container",
                       "height": 48,
-                      "fill": "$accent-blue",
-                      "cornerRadius": 6,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#85ADFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#B1C9FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 4,
                       "gap": 8,
                       "justifyContent": "center",
                       "alignItems": "center",
@@ -6992,13 +7170,13 @@
                           "height": 16,
                           "iconFontName": "zap",
                           "iconFontFamily": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#E5E2E1"
                         },
                         {
                           "type": "text",
                           "id": "pQTdj",
                           "name": "syncBtnLabel",
-                          "fill": "#FFFFFF",
+                          "fill": "#E5E2E1",
                           "content": "Sync to Music",
                           "fontFamily": "Inter",
                           "fontSize": 13,
@@ -7053,7 +7231,7 @@
           "name": "HUD Modal",
           "width": 640,
           "fill": "$bg-elevated",
-          "cornerRadius": 10,
+          "cornerRadius": 4,
           "stroke": {
             "align": "inside",
             "thickness": 1,
@@ -7152,7 +7330,7 @@
                   "width": 28,
                   "height": 28,
                   "fill": "$bg-input",
-                  "cornerRadius": 14,
+                  "cornerRadius": 6,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
@@ -7445,7 +7623,7 @@
                                       "type": "text",
                                       "id": "3UWVk",
                                       "name": "row3Key2Label",
-                                      "fill": "#FFFFFF",
+                                      "fill": "#E5E2E1",
                                       "content": "1×",
                                       "fontFamily": "Inter",
                                       "fontSize": 10,
@@ -7767,7 +7945,7 @@
                                   "type": "frame",
                                   "id": "CcXjD",
                                   "name": "annKey1",
-                                  "fill": "#2A1A0A",
+                                  "fill": "#241B00",
                                   "cornerRadius": 4,
                                   "stroke": {
                                     "align": "inside",
@@ -7826,7 +8004,7 @@
                                   "type": "frame",
                                   "id": "oXYTv",
                                   "name": "annKey2",
-                                  "fill": "#2A1A0A",
+                                  "fill": "#241B00",
                                   "cornerRadius": 4,
                                   "stroke": {
                                     "align": "inside",
@@ -8507,7 +8685,14 @@
   "variables": {
     "accent-blue": {
       "type": "color",
-      "value": "#0A84FF"
+      "value": [
+        {
+          "value": "#0A84FF"
+        },
+        {
+          "value": "#B1C9FF"
+        }
+      ]
     },
     "accent-green": {
       "type": "color",
@@ -8515,7 +8700,14 @@
     },
     "accent-orange": {
       "type": "color",
-      "value": "#FF9F0A"
+      "value": [
+        {
+          "value": "#FF9F0A"
+        },
+        {
+          "value": "#F4C249"
+        }
+      ]
     },
     "accent-red": {
       "type": "color",
@@ -8523,35 +8715,91 @@
     },
     "bg-elevated": {
       "type": "color",
-      "value": "#2C2C2F"
+      "value": [
+        {
+          "value": "#2C2C2F"
+        },
+        {
+          "value": "#353534"
+        }
+      ]
     },
     "bg-input": {
       "type": "color",
-      "value": "#3A3A3D"
+      "value": [
+        {
+          "value": "#3A3A3D"
+        },
+        {
+          "value": "#2A2A2A"
+        }
+      ]
     },
     "bg-panel": {
       "type": "color",
-      "value": "#252528"
+      "value": [
+        {
+          "value": "#252528"
+        },
+        {
+          "value": "#201F1F"
+        }
+      ]
     },
     "bg-primary": {
       "type": "color",
-      "value": "#1C1C1E"
+      "value": [
+        {
+          "value": "#1C1C1E"
+        },
+        {
+          "value": "#0E0E0E"
+        }
+      ]
     },
     "border": {
       "type": "color",
-      "value": "#38383B"
+      "value": [
+        {
+          "value": "#38383B"
+        },
+        {
+          "value": "#434751"
+        }
+      ]
     },
     "text-muted": {
       "type": "color",
-      "value": "#48484A"
+      "value": [
+        {
+          "value": "#48484A"
+        },
+        {
+          "value": "#4A4A50"
+        }
+      ]
     },
     "text-primary": {
       "type": "color",
-      "value": "#F2F2F7"
+      "value": [
+        {
+          "value": "#F2F2F7"
+        },
+        {
+          "value": "#E5E2E1"
+        }
+      ]
     },
     "text-secondary": {
       "type": "color",
-      "value": "#8E8E93"
+      "value": [
+        {
+          "value": "#8E8E93"
+        },
+        {
+          "value": "#8A8A8F"
+        }
+      ]
     }
   }
 }

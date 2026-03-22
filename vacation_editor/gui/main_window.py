@@ -16,8 +16,11 @@ from PyQt6.QtWidgets import (
 from vacation_editor.gui import theme
 from vacation_editor.gui.annotation.controller import AnnotationController
 from vacation_editor.gui.annotation.tab import AnnotationTab
+from vacation_editor.gui.composition.controller import CompositionController
+from vacation_editor.gui.composition.tab import CompositionTab
 from vacation_editor.utils.providers import (
     build_annotation_store,
+    build_composition_processor,
     build_video_storage,
 )
 
@@ -140,9 +143,13 @@ class MainWindow(QMainWindow):
         # Build providers (single instantiation point)
         storage = build_video_storage(config)
         store = build_annotation_store(config)
+        processor = build_composition_processor(config, storage, store)
 
         # Build controllers
         self._annotation_ctrl = AnnotationController(storage, store, parent=self)
+        self._composition_ctrl = CompositionController(
+            processor, store, storage, parent=self
+        )
 
         self._setup_ui()
 
@@ -165,8 +172,11 @@ class MainWindow(QMainWindow):
         annotation_tab = AnnotationTab(self._annotation_ctrl)
         self._stack.addWidget(annotation_tab)
 
-        # Placeholder tabs for Phase 2 + 3
-        self._stack.addWidget(_PlaceholderTab("Composition Engine — coming in Phase 2"))
+        # Composition tab (Phase 2)
+        composition_tab = CompositionTab(self._composition_ctrl)
+        self._stack.addWidget(composition_tab)
+
+        # Placeholder tab for Phase 3
         self._stack.addWidget(_PlaceholderTab("Music Sync — coming in Phase 3"))
 
         self._tab_bar.connect_tabs(self._stack)

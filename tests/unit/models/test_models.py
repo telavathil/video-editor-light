@@ -4,7 +4,7 @@ import pytest
 
 from vacation_editor.models.annotation import ClipAnnotation, Section
 from vacation_editor.models.clip import ClipMetadata
-from vacation_editor.models.composition import Composition, CompositionSection
+from vacation_editor.models.composition import Composition, CompositionSection, ExportSettings
 from vacation_editor.models.job import JobStatus
 
 
@@ -170,3 +170,35 @@ class TestClipMetadata:
         )
         restored = ClipMetadata.model_validate_json(m.model_dump_json())
         assert restored == m
+
+
+class TestExportSettings:
+    def test_defaults(self) -> None:
+        s = ExportSettings(output_path="/tmp/out.mp4")
+        assert s.codec == "h264"
+        assert s.fps == 24
+        assert s.hw_encoding is True
+
+    def test_custom_values(self) -> None:
+        s = ExportSettings(
+            output_path="/Users/me/Desktop/holiday.mp4",
+            codec="h265",
+            fps=25,
+            hw_encoding=False,
+        )
+        assert s.codec == "h265"
+        assert s.fps == 25
+        assert s.hw_encoding is False
+
+    def test_invalid_codec_raises(self) -> None:
+        with pytest.raises(Exception):
+            ExportSettings(output_path="/tmp/out.mp4", codec="vp9")  # type: ignore[arg-type]
+
+    def test_invalid_fps_raises(self) -> None:
+        with pytest.raises(Exception):
+            ExportSettings(output_path="/tmp/out.mp4", fps=30)  # type: ignore[arg-type]
+
+    def test_roundtrip_json(self) -> None:
+        s = ExportSettings(output_path="/tmp/out.mp4", codec="h265", fps=25)
+        restored = ExportSettings.model_validate_json(s.model_dump_json())
+        assert restored == s

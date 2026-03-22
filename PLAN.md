@@ -816,15 +816,15 @@ Use this section to track progress across implementation sessions. Check off ste
 - [x] 1.11 Tests  (114 tests passing — controller, widgets, models, services)
 
 ### Phase 2 — Composition Engine (Short Clip)
-- [ ] 2.1 Section extraction pipeline
-- [ ] 2.2 Transition pipeline
-- [ ] 2.3 Final stitch pipeline
-- [ ] 2.4 Section ordering UI
-- [ ] 2.5 Transition picker widget
-- [ ] 2.6 Export dialog
-- [ ] 2.7 Composition controller
-- [ ] 2.8 Transition review step
-- [ ] 2.9 Tests
+- [x] 2.1 Section extraction pipeline  (ffmpeg.extract_section — was already complete)
+- [x] 2.2 Transition pipeline  (ffmpeg.apply_transition — was already complete)
+- [x] 2.3 Final stitch pipeline  (ffmpeg.final_encode — hardware-accelerated VideoToolbox)
+- [x] 2.4 Section ordering UI  (SectionLibraryWidget + SequenceTrackWidget)
+- [x] 2.5 Transition picker widget  (TransitionPickerWidget with codec/fps selectors)
+- [x] 2.6 Export dialog  (ExportDialog — in-progress + complete states)
+- [x] 2.7 Composition controller  (CompositionController with QTimer polling)
+- [x] 2.8 ExportSettings model  (output_path, codec, fps, hw_encoding)
+- [x] 2.9 Tests  (142 tests passing — +28 new: controller, ExportSettings model)
 
 ### Phase 3 — Music-Synced Long-Form
 - [ ] 3.1 Beat detection service

@@ -129,20 +129,29 @@ def apply_transition(
     duration_sec = duration_ms / 1000.0
     offset = _get_duration(ffmpeg_path, clip_a) - duration_sec
 
+    has_audio = _has_audio(ffmpeg_path, clip_a)
+
     if transition in ("crossfade", "dissolve"):
         xfade_type = "fade" if transition == "crossfade" else "dissolve"
+        if has_audio:
+            filter_complex = (
+                f"[0:v][1:v]xfade=transition={xfade_type}"
+                f":duration={duration_sec}:offset={offset:.4f}[v];"
+                f"[0:a][1:a]acrossfade=d={duration_sec}[a]"
+            )
+            maps = ["-map", "[v]", "-map", "[a]"]
+        else:
+            filter_complex = (
+                f"[0:v][1:v]xfade=transition={xfade_type}"
+                f":duration={duration_sec}:offset={offset:.4f}[v]"
+            )
+            maps = ["-map", "[v]", "-an"]
         cmd = [
             str(ffmpeg_path), "-y",
             "-i", str(clip_a),
             "-i", str(clip_b),
-            "-filter_complex",
-            (
-                f"[0:v][1:v]xfade=transition={xfade_type}"
-                f":duration={duration_sec}:offset={offset:.4f}[v];"
-                f"[0:a][1:a]acrossfade=d={duration_sec}[a]"
-            ),
-            "-map", "[v]",
-            "-map", "[a]",
+            "-filter_complex", filter_complex,
+            *maps,
             str(output_path),
         ]
         _run(cmd, f"apply_transition({transition}, {clip_a.name} → {clip_b.name})")
@@ -151,21 +160,29 @@ def apply_transition(
     if transition == "fade_to_black":
         clip_a_duration = _get_duration(ffmpeg_path, clip_a)
         fade_start = clip_a_duration - duration_sec
-        cmd = [
-            str(ffmpeg_path), "-y",
-            "-i", str(clip_a),
-            "-i", str(clip_b),
-            "-filter_complex",
-            (
+        if has_audio:
+            filter_complex = (
                 f"[0:v]fade=t=out:st={fade_start:.4f}:d={duration_sec}[va];"
                 f"[1:v]fade=t=in:st=0:d={duration_sec}[vb];"
                 "[va][vb]concat=n=2:v=1:a=0[v];"
                 f"[0:a]afade=t=out:st={fade_start:.4f}:d={duration_sec}[aa];"
                 f"[1:a]afade=t=in:st=0:d={duration_sec}[ab];"
                 "[aa][ab]concat=n=2:v=0:a=1[a]"
-            ),
-            "-map", "[v]",
-            "-map", "[a]",
+            )
+            maps = ["-map", "[v]", "-map", "[a]"]
+        else:
+            filter_complex = (
+                f"[0:v]fade=t=out:st={fade_start:.4f}:d={duration_sec}[va];"
+                f"[1:v]fade=t=in:st=0:d={duration_sec}[vb];"
+                "[va][vb]concat=n=2:v=1:a=0[v]"
+            )
+            maps = ["-map", "[v]", "-an"]
+        cmd = [
+            str(ffmpeg_path), "-y",
+            "-i", str(clip_a),
+            "-i", str(clip_b),
+            "-filter_complex", filter_complex,
+            *maps,
             str(output_path),
         ]
         _run(cmd, f"apply_transition(fade_to_black, {clip_a.name} → {clip_b.name})")
@@ -205,6 +222,60 @@ def concat_clips(ffmpeg_path: Path, clips: list[Path], output_path: Path) -> Pat
         concat_file.unlink(missing_ok=True)
 
     return output_path
+
+
+def final_encode(
+    ffmpeg_path: Path,
+    input_path: Path,
+    output_path: Path,
+    codec: str = "h264",
+    fps: int = 24,
+    hw_encoding: bool = True,
+) -> Path:
+    """Encode the assembled clip to the delivery format.
+
+    On macOS, uses VideoToolbox hardware encoders (h264_videotoolbox /
+    hevc_videotoolbox) when hw_encoding=True. VideoToolbox does not support
+    CRF mode so a high-quality bitrate target (40 Mbps) is used instead.
+    Falls back to libx264 / libx265 with CRF=18 when hw_encoding=False.
+
+    Raises RuntimeError if ffmpeg fails.
+    """
+    if hw_encoding:
+        video_codec = "h264_videotoolbox" if codec == "h264" else "hevc_videotoolbox"
+        video_quality_opts = ["-b:v", "40M"]
+    else:
+        video_codec = "libx264" if codec == "h264" else "libx265"
+        video_quality_opts = ["-crf", "18", "-preset", "slow"]
+
+    cmd = [
+        str(ffmpeg_path), "-y",
+        "-i", str(input_path),
+        "-c:v", video_codec,
+        *video_quality_opts,
+        "-vf", f"fps={fps},format=yuv420p",
+        "-c:a", "aac",
+        "-ar", "48000",
+        "-ac", "2",
+        str(output_path),
+    ]
+    _run(cmd, f"final_encode(codec={codec}, fps={fps}, hw={hw_encoding})")
+    return output_path
+
+
+def _has_audio(ffmpeg_path: Path, clip_path: Path) -> bool:
+    """Return True if the clip contains at least one audio stream."""
+    ffprobe_path = ffmpeg_path.parent / "ffprobe"
+    cmd = [
+        str(ffprobe_path),
+        "-v", "quiet",
+        "-select_streams", "a:0",
+        "-show_entries", "stream=codec_type",
+        "-of", "csv=p=0",
+        str(clip_path),
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    return bool(result.stdout.strip())
 
 
 def _get_duration(ffmpeg_path: Path, clip_path: Path) -> float:

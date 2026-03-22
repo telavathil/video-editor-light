@@ -4,13 +4,13 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 if TYPE_CHECKING:
-    from vacation_editor.models.composition import Composition
+    from vacation_editor.models.composition import Composition, ExportSettings
     from vacation_editor.models.job import JobStatus
 
 
 @runtime_checkable
 class CompositionProcessor(Protocol):
-    def submit(self, composition: Composition) -> str:
+    def submit(self, composition: Composition, export_settings: ExportSettings) -> str:
         """Submit a composition for processing.
 
         Returns a job_id that can be used with poll(), get_result(), and cancel().

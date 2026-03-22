@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from vacation_editor.config import AppConfig
+from vacation_editor.models.composition import ExportSettings
 from vacation_editor.models.job import JobStatus
 from vacation_editor.services import ffmpeg as ffmpeg_service
 
@@ -40,7 +41,7 @@ class LocalCompositionProcessor:
         self._cancel_events: dict[str, threading.Event] = {}
         self._lock = threading.Lock()
 
-    def submit(self, composition: Composition) -> str:
+    def submit(self, composition: Composition, export_settings: ExportSettings) -> str:
         job_id = str(uuid.uuid4())
         cancel_event = threading.Event()
 
@@ -50,7 +51,7 @@ class LocalCompositionProcessor:
 
         thread = threading.Thread(
             target=self._run_pipeline,
-            args=(job_id, composition, cancel_event),
+            args=(job_id, composition, export_settings, cancel_event),
             daemon=True,
             name=f"composition-{job_id[:8]}",
         )
@@ -92,13 +93,14 @@ class LocalCompositionProcessor:
         self,
         job_id: str,
         composition: Composition,
+        export_settings: ExportSettings,
         cancel_event: threading.Event,
     ) -> None:
         self._update_status(job_id, JobStatus(job_id=job_id).as_running(0.0))
 
         try:
             ffmpeg_path = ffmpeg_service.detect_ffmpeg(self._config)
-            output_path = self._config.exports_dir / f"{composition.composition_id}.mp4"
+            output_path = Path(export_settings.output_path)
             output_path.parent.mkdir(parents=True, exist_ok=True)
 
             with tempfile.TemporaryDirectory(prefix="vacation_editor_") as tmp_dir:
@@ -135,7 +137,7 @@ class LocalCompositionProcessor:
                     progress = (i + 1) / total * 50
                     self._update_status(job_id, JobStatus(job_id=job_id).as_running(progress))
 
-                # Stage 2: Normalize all sections (50–70%)
+                # Stage 2: Normalize all sections to target fps (50–70%)
                 normalized: list[Path] = []
                 for i, clip in enumerate(extracted):
                     if cancel_event.is_set():
@@ -143,7 +145,10 @@ class LocalCompositionProcessor:
                         return
 
                     out = tmp / f"normalized_{i:03d}.mp4"
-                    ffmpeg_service.normalize_section(ffmpeg_path, clip, out)
+                    ffmpeg_service.normalize_section(
+                        ffmpeg_path, clip, out,
+                        target_fps=float(export_settings.fps),
+                    )
                     normalized.append(out)
 
                     progress = 50 + (i + 1) / total * 20
@@ -159,14 +164,21 @@ class LocalCompositionProcessor:
                     if cancel_event.is_set():
                         return
 
-                # Stage 4: Final concat and encode (90–100%)
+                # Stage 4: Final encode (90–100%)
                 self._update_status(job_id, JobStatus(job_id=job_id).as_running(90.0))
 
-                if len(processed) == 1:
-                    import shutil
-                    shutil.copy2(processed[0], output_path)
-                else:
-                    ffmpeg_service.concat_clips(ffmpeg_path, processed, output_path)
+                intermediate = processed[0] if len(processed) == 1 else tmp / "assembled.mp4"
+                if len(processed) > 1:
+                    ffmpeg_service.concat_clips(ffmpeg_path, processed, intermediate)
+
+                ffmpeg_service.final_encode(
+                    ffmpeg_path,
+                    intermediate,
+                    output_path,
+                    codec=export_settings.codec,
+                    fps=export_settings.fps,
+                    hw_encoding=export_settings.hw_encoding,
+                )
 
                 self._update_status(
                     job_id,

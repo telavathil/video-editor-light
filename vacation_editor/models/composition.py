@@ -9,6 +9,13 @@ from pydantic import BaseModel, Field
 TransitionType = Literal["cut", "crossfade", "dissolve", "fade_to_black"]
 
 
+class ExportSettings(BaseModel):
+    output_path: str
+    codec: Literal["h264", "h265"] = "h264"
+    fps: Literal[24, 25] = 24
+    hw_encoding: bool = True
+
+
 class CompositionSection(BaseModel):
     clip_id: str
     section_id: str
